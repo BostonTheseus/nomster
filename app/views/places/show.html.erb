@@ -39,9 +39,9 @@
 </div>
 
 <div class="clear"></div>
-<%= simple_form_for @comment, :url => place_comments_path(@path) do |f| %>
+<%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
   <%= f.input :message %>
-  <%= f.input :rating, :as => :select, :collection => Comment::RATING %>
+  <%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
 
   <%= f.submit "Add a Comment", :class => 'btn btn-primary' %>
 <% end %>

@@ -1,11 +1,16 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
-    test "user_dashboard" do
+
+	test "comment creation" do
 		user = FactoryGirl.create(:user)
 		sign_in user
-		get :show, :place => place.id
-		assert_response :success
-	
+		@place = FactoryGirl.create(:place, :user => user)
+		post :create, :place_id => @place.id, :comment => {
+				:message => "Yolo", 
+				:rating => "1_star"
+		}
+
+		assert_redirected_to place_path(@place)
 	end
 end
